@@ -1,25 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Provider} from 'react-redux'
+import {Route, Switch} from 'react-router-dom';
+import {createStore} from 'redux'
+import {combineReducers} from 'redux'
+import userReducer from './reducers/userReducer'
 
-function App() {
+import {Container,Row,Col} from 'react-bootstrap'
+import SignupForm from './components/SignupForm';
+
+const rootReducer = combineReducers({
+  userReducer
+})
+
+const store = createStore(rootReducer)
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Container>
+        <Row>
+          <Col>
+            
+              <h1>Neighborhood Pantry</h1>
+            
+          </Col>
+        </Row>
+        <Row>
+          <Switch>
+            <Route path="/signup" render={()=><SignupForm/>} />
+            <Route path="/" render={()=> <h3>Hello World</h3>} />
+          </Switch>
+        </Row>
+    </Container>
+      </Provider>
   );
 }
 
