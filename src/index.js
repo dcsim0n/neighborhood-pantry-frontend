@@ -1,14 +1,31 @@
 import 'bootstrap/dist/css/bootstrap.css'
+import 'react-bootstrap';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom'
-import 'react-bootstrap';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import App from './App';
 
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
+import userReducer from './reducers/userReducer'
+import errorsReducer from './reducers/errorsReducer'
+import thunk from 'redux-thunk';
+
+const rootReducer = combineReducers({
+    user: userReducer,
+    errors: errorsReducer
+  })
+  const composeMidleware = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+  const store = createStore(
+    rootReducer,
+    composeMidleware(
+      applyMiddleware(thunk)
+    ))
+    
 ReactDOM.render(
     <BrowserRouter>
-        <App />
+        <App store={store}/>
     </BrowserRouter>
     , document.getElementById('root'));
 
