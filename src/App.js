@@ -6,7 +6,7 @@ import {Container,Row,Col} from 'react-bootstrap'
 import SignupForm from './components/SignupForm';
 import LeftNav from './components/LeftNav';
 import LoginForm from './components/LoginForm';
-
+import Dashboard from './containers/Dashboard';
 
 
 function App(props) {
@@ -27,7 +27,7 @@ function App(props) {
               <Route path="/" render={()=>(
                 props.user.token
                 ?
-                 null
+                  <Dashboard />
                 :
                 <LoginForm />
               )} />
