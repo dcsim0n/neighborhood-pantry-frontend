@@ -9,6 +9,7 @@ import thunk from 'redux-thunk';
 import {Container,Row,Col} from 'react-bootstrap'
 import SignupForm from './components/SignupForm';
 import LeftNav from './components/LeftNav';
+import LoginForm from './components/LoginForm';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -36,7 +37,13 @@ function App(props) {
           <Col> 
             <Switch>
               <Route path="/signup" render={()=><SignupForm/>} />
-              <Route path="/" render={()=> <h3>Hello World</h3>} />
+              <Route path="/" render={()=>(
+                store.getState().token != null
+                ?
+                 null
+                :
+                <LoginForm />
+              )} />
             </Switch>
 
           </Col>

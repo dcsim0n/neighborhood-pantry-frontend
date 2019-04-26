@@ -1,7 +1,7 @@
 import C from '../constants';
 
 const initialState = {
-    token: "",
+    token: null,
     firstName: null,
     lastName: null,
     email: null,
