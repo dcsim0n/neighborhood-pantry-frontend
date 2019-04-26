@@ -7,6 +7,7 @@ import userReducer from './reducers/userReducer'
 
 import {Container,Row,Col} from 'react-bootstrap'
 import SignupForm from './components/SignupForm';
+import LeftNav from './components/LeftNav';
 
 const rootReducer = combineReducers({
   userReducer
@@ -17,7 +18,7 @@ const store = createStore(rootReducer)
 function App(props) {
   return (
     <Provider store={store}>
-      <Container>
+      <Container fluid="true">
         <Row>
           <Col>
             
@@ -26,10 +27,15 @@ function App(props) {
           </Col>
         </Row>
         <Row>
-          <Switch>
-            <Route path="/signup" render={()=><SignupForm/>} />
-            <Route path="/" render={()=> <h3>Hello World</h3>} />
-          </Switch>
+          <Col> <LeftNav /> </Col>
+          <Col> 
+            <Switch>
+              <Route path="/signup" render={()=><SignupForm/>} />
+              <Route path="/" render={()=> <h3>Hello World</h3>} />
+            </Switch>
+
+          </Col>
+          <Col> {/*Right side content */}</Col>
         </Row>
     </Container>
       </Provider>
