@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
             }
             return newState
         case C.LOG_OUT:
-            console.log("loggine out..")
+            console.log("logging out..")
             return state
             
         default:
