@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import {Form, Card, Button, Col} from 'react-bootstrap'
-export default class SignupForm extends Component {
+import C from '../constants';
+import {Form, Card, Button, Col, Alert} from 'react-bootstrap'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
+
+class SignupForm extends Component {
     constructor(props) {
       super(props)
     
@@ -24,13 +28,50 @@ export default class SignupForm extends Component {
 
     handleSubmit = (event) =>{
       event.preventDefault()
-
       console.log('this.state', this.state)
+
+      const data= {
+        first_name: this.state.formFirstName,
+        last_name: this.state.formLastName,
+        email: this.state.formEmail,
+        password: this.state.formPassword,
+        address_attributes: {
+          street: this.state.formStreet,
+          city: this.state.formCity,
+          state: this.state.formState,
+          zip: this.state.formZip
+        }
+      }
+      this.props.dispatch({
+        type: C.FETCHING,
+        payload: true
+      })
+      this.props.dispatch((dispatch)=>{
+        fetch(`${C.API_ROOT}/users`, {
+          method : "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        })
+        .then((resp)=>resp.json())
+        .then((data)=>{
+          if(data.errors){
+            dispatch({type:C.NEW_ERROR,payload:data.errors})
+          }else{
+            dispatch({type:C.LOG_IN,payload:data})
+            dispatch({type:C.CLEAR_ERRORS})
+            this.props.history.push("/")
+          }
+        })
+      })
+
     }
   render() {
     return (
       <Card>
         <Card.Body>
+          {this.props.errors.length > 0 ? <Alert variant='danger'>{this.props.errors.map(e=><p>{e}</p>)}</Alert> : null }
           <Card.Title>Create a new account</Card.Title>
             <Form>
               <Form.Row>
@@ -84,3 +125,10 @@ export default class SignupForm extends Component {
     )
   }
 }
+const mapStateToProps = (state,ownProps) => {
+  return {
+    ...ownProps,
+    errors: state.errors
+  }
+}
+export default withRouter(connect(mapStateToProps)(SignupForm))

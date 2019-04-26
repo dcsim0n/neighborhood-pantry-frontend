@@ -1,7 +1,8 @@
 import C from '../constants';
 
 const initialState = {
-firstName: null,
+    token: "",
+    firstName: null,
     lastName: null,
     email: null,
     id: null
@@ -10,8 +11,15 @@ firstName: null,
 export default (state = initialState, action) => {
     switch (action.type) {
         case C.LOG_IN:
-            console.log("loging in..")
-            return state
+            const {first_name, last_name, email, id} = action.payload.user
+            const newState = {
+                token: action.payload.token,
+                firstName: first_name,
+                lastName: last_name,
+                email,
+                id
+            }
+            return newState
         case C.LOG_OUT:
             console.log("loggine out..")
             return state
