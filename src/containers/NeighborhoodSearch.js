@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {fetchAll} from '../fetch';
 import C from '../constants'
-import {Card, Container, Row, Col, Form, Button} from 'react-bootstrap'
+import {Card, Container, Row, Col, Form, Button, InputGroup, FormControl} from 'react-bootstrap'
+import PlaceCard from '../components/PlaceCard'
 
 export default class NeighborhoodSearch extends Component {
   constructor(props) {
@@ -9,7 +10,9 @@ export default class NeighborhoodSearch extends Component {
   
     this.state = {
        searchString:"",
-       searchResults: []
+       searchResults: [],
+       nearby:[],
+       searchRadius:"5"
     }
   }
 
@@ -25,14 +28,31 @@ export default class NeighborhoodSearch extends Component {
     })
   }
 
+  componentDidMount(){
+    fetchAll(`${C.API_ROOT}/neighborhoods/search?user_id=${7}&radius=${this.state.searchRadius}`,(data)=>{
+      this.setState({nearby: data})
+    })
+  }
+
   render() {
     return (
       <div>
         <Card>
           <Card.Body>
-            <Card.Title>
-              Neighborhoods Close to you:
-            </Card.Title>
+              <Card.Title>Find your Neighborhood</Card.Title>
+              <InputGroup as={Col} lg="2">
+                <InputGroup.Prepend>
+                  <Button onClick={this.down}>-</Button>
+                </InputGroup.Prepend>
+                <FormControl value={this.state.searchRadius} readOnly />
+                <InputGroup.Append>
+                  <Button onClick={this.up}>+</Button>
+                </InputGroup.Append>
+              </InputGroup>
+              <Card.Title>Neighborhoods in your area:</Card.Title>
+              <Col lg="8">
+                {this.state.nearby.map((place)=><PlaceCard place={place} />)}
+              </Col>
 
           </Card.Body>
         </Card>

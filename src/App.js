@@ -13,7 +13,7 @@ function App(props) {
   return (
     <Provider store={props.store}>
       <Container fluid="true">
-        <Row wi>
+        <Row>
           <Col>
             
               <h1>Neighborhood Pantry</h1>
