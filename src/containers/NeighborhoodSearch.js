@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {fetchAll} from '../fetch';
 import C from '../constants'
 import {Card, Container, Row, Col, Form, Button, InputGroup, FormControl} from 'react-bootstrap'
-import PlaceCard from '../components/PlaceCard'
+import NeighborhoodCard from '../components/NeighborhoodCard'
+import PlaceCard from '../components/PlaceCard';
 
 export default class NeighborhoodSearch extends Component {
   constructor(props) {
@@ -40,18 +41,19 @@ export default class NeighborhoodSearch extends Component {
         <Card>
           <Card.Body>
               <Card.Title>Find your Neighborhood</Card.Title>
+              <label htmlFor="search-radius">Adjust the search radius</label>
               <InputGroup as={Col} lg="2">
                 <InputGroup.Prepend>
                   <Button onClick={this.down}>-</Button>
                 </InputGroup.Prepend>
-                <FormControl value={this.state.searchRadius} readOnly />
+                <FormControl id="search-radius" value={this.state.searchRadius} readOnly />
                 <InputGroup.Append>
                   <Button onClick={this.up}>+</Button>
                 </InputGroup.Append>
               </InputGroup>
               <Card.Title>Neighborhoods in your area:</Card.Title>
               <Col lg="8">
-                {this.state.nearby.map((place)=><PlaceCard place={place} />)}
+                {this.state.nearby.map((place)=><NeighborhoodCard place={place} />)}
               </Col>
 
           </Card.Body>
@@ -67,11 +69,17 @@ export default class NeighborhoodSearch extends Component {
             </Form.Group>
             <Button type="submit">Search</Button>
           </Form>
+          <Col lg="10">
+          <Container>
+            
+              {this.state.searchResults.map((place)=><PlaceCard place={place}/>)}
+
+            </Container>
+          </Col>
           </Card.Body>
         </Card>
         <Container>
           
-          {this.state.searchResults.map((place)=><Row><Col>{place.data.display_name}</Col></Row>)}
 
         </Container>
         
