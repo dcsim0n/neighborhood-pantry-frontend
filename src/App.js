@@ -13,7 +13,7 @@ function App(props) {
   return (
     <Provider store={props.store}>
       <Container fluid="true">
-        <Row>
+        <Row wi>
           <Col>
             
               <h1>Neighborhood Pantry</h1>
@@ -21,7 +21,7 @@ function App(props) {
         </Row>
         <Row>
           <Col> <LeftNav /> </Col>
-          <Col> 
+          <Col lg="8"> 
             <Switch>
               <Route path="/signup" render={()=><SignupForm/>} />
               <Route path="/" render={()=>(

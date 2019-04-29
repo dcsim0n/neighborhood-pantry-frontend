@@ -1,5 +1,5 @@
 import C from '../constants'
-import {fetchAll, postOne} from '../fetch'
+import {fetchAll} from '../fetch'
 
 export const startFetch = () =>{
     return {type: C.FETCHING, payload: true}
@@ -12,7 +12,6 @@ export const getNeighborhoods = () => {
     return (dispatch,getState)=> {
         const {id, token} = getState().user
         fetchAll(`${C.API_ROOT}/users/${id}/neighborhoods?token=${token}`,(data)=>{
-        console.log('token', token)
         return dispatch({type: C.SET_USER_NEIGHBORHOODS, payload: data})
     })}
 }

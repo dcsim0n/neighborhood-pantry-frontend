@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux';
 
 import {getUserInfo, getNeighborhoods} from '../actions/actions'
-
+import NeighborhoodSearch from './NeighborhoodSearch';
 class Dashboard extends Component {
 
   componentDidMount() {
@@ -12,7 +12,11 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        
+        {this.props.neighborhoods.length < 1
+        ?
+        <NeighborhoodSearch />
+        :
+        null }
       </div>
     )
   }
