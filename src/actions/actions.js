@@ -1,5 +1,5 @@
 import C from '../constants'
-import {fetchAll} from '../fetch'
+import {fetchAll,postOne} from '../fetch'
 
 export const startFetch = () =>{
     return {type: C.FETCHING, payload: true}
@@ -24,3 +24,16 @@ export const getUserInfo = () =>{
         return dispatch({type: C.USER_INFO, payload: info})
     })}
 }
+export const joinNeighborhood = (neighborhood)=>{
+    return (dispatch,getState)=>{
+        const {id, token}= getState().user
+        const body = {
+            token: token,
+            neighborhood_id: neighborhood.id
+        }
+        postOne(`${C.API_ROOT}/users/${id}/neighbors`,body,(data)=>{
+                return dispatch({type:C.SET_USER_NEIGHBORHOODS,payload:data})
+            }
+        )
+    }
+  }

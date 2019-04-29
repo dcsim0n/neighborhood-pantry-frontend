@@ -16,7 +16,7 @@ class Dashboard extends Component {
         ?
         <NeighborhoodSearch />
         :
-        null }
+        <h2>Lets trade some groceries</h2>}
       </div>
     )
   }

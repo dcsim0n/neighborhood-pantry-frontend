@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import {fetchAll} from '../fetch';
 import C from '../constants'
-import {Card, Container, Row, Col, Form, Button, InputGroup, FormControl} from 'react-bootstrap'
+import {Card, Container, Col, Form, Button, InputGroup, FormControl} from 'react-bootstrap'
+import {postOne} from '../fetch';
+import {connect} from 'react-redux'
+
 import NeighborhoodCard from '../components/NeighborhoodCard'
 import PlaceCard from '../components/PlaceCard';
+import { joinNeighborhood } from '../actions/actions';
 
-export default class NeighborhoodSearch extends Component {
+class NeighborhoodSearch extends Component {
   constructor(props) {
     super(props)
   
@@ -27,12 +31,28 @@ export default class NeighborhoodSearch extends Component {
     (data)=>{
       this.setState({searchResults: data})
     })
+    e.target.reset()
   }
 
   componentDidMount(){
-    fetchAll(`${C.API_ROOT}/neighborhoods/search?user_id=${7}&radius=${this.state.searchRadius}`,(data)=>{
+    const id = this.props.userId
+    fetchAll(`${C.API_ROOT}/neighborhoods/search?user_id=${id}&radius=${this.state.searchRadius}`,(data)=>{
       this.setState({nearby: data})
     })
+  }
+  handleNewNeighborhood = (place)=>{
+    const {data } = place
+    const newNeighborhood = {
+        name: data.display_name,
+        latitude: data.lat,
+        longitude: data.lon
+    }
+    postOne(`${C.API_ROOT}/neighborhoods`,
+        newNeighborhood,
+        (data)=>{ 
+          this.setState({searchResults:[]})
+        }
+    )
   }
 
   render() {
@@ -53,7 +73,7 @@ export default class NeighborhoodSearch extends Component {
               </InputGroup>
               <Card.Title>Neighborhoods in your area:</Card.Title>
               <Col lg="8">
-                {this.state.nearby.map((place)=><NeighborhoodCard place={place} />)}
+                {this.state.nearby.map((place)=><NeighborhoodCard place={place} handleClick={this.props.handleJoin} />)}
               </Col>
 
           </Card.Body>
@@ -72,7 +92,7 @@ export default class NeighborhoodSearch extends Component {
           <Col lg="10">
           <Container>
             
-              {this.state.searchResults.map((place)=><PlaceCard place={place}/>)}
+              {this.state.searchResults.map((place)=><PlaceCard place={place} handleClick={this.handleNewNeighborhood}/>)}
 
             </Container>
           </Col>
@@ -87,3 +107,16 @@ export default class NeighborhoodSearch extends Component {
     )
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    userId: state.user.id,
+    token: state.user.token
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    handleJoin: (neighborhood) => dispatch(joinNeighborhood(neighborhood))
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(NeighborhoodSearch)
