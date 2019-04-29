@@ -1,11 +1,34 @@
-import React from 'react'
+import React, { Component } from 'react'
+import {connect} from 'react-redux';
 
-import {Image} from 'react-bootstrap'
+import {getUserInfo, getNeighborhoods} from '../actions/actions'
 
-export default function Dashboard() {
-  return (
-    <div>
-        <Image src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAwjA60.img?h=416&w=624&m=6&q=60&o=f&l=f" rounded />
-    </div>
-  )
+class Dashboard extends Component {
+
+  componentDidMount() {
+    this.props.getNeighborhoods()
+    this.props.getUserInfo()
+  }
+  render() {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
 }
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getNeighborhoods: () => dispatch(getNeighborhoods()),
+    getUserInfo: () =>dispatch(getUserInfo())
+  }
+  
+}
+const mapStateToProps = (state, ownProps) => {
+  return {
+    userId: state.user.id,
+    neighborhoods: state.neighborhoods
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Dashboard)
