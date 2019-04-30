@@ -40,8 +40,10 @@ export const joinNeighborhood = (neighborhood)=>{
 
   export const newPR = ()=>{
       // Make a new Pantry Request
+      console.log("Making a new Pantry Request")
   }
 
   export const newPI = ()=>{
       //Make a new Pantry Item
+      console.log("Making a new Pantry Item")
   }
