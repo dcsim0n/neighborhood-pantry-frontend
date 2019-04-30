@@ -43,7 +43,20 @@ export const joinNeighborhood = (neighborhood)=>{
       console.log("Making a new Pantry Request")
   }
 
-  export const newPI = ()=>{
-      //Make a new Pantry Item
-      console.log("Making a new Pantry Item")
+  export const newPI = (pantryItem)=>{
+      console.log("Making new pantry item..")
+    return (dispatch,getState) =>{
+        const {id, token} = getState().user
+        const body ={
+            token: token,
+            pantry_item: {
+                user_id: id,
+                ...pantryItem
+            }
+        }
+        postOne(`${C.API_ROOT}/users/${id}/pantry_items`,body,(data)=>{
+            return dispatch({type:C.UPDATE_ITEMS, payload:data})
+        })
+        console.log("Making a new Pantry Item")
+    }
   }

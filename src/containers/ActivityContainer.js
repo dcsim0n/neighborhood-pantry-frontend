@@ -12,11 +12,20 @@ class ActivityContainer extends Component {
         //Fetch items and requests here?
     }
     
-    handlePiForm(event){
+    handlePiForm = (event) => {
         event.preventDefault()
         console.log('event.target.name', event.target.name.value)
+        const {name, quantity, unit} = event.target
+        
+        const pantryItem ={
+            name: name.value,
+            quantity: quantity.value,
+            unit: unit.value
+        }
+        console.log('pantryItem :', pantryItem);
+        this.props.newPI(pantryItem)
     }
-    handlePrForm(event){
+    handlePrForm = (event) => {
         event.preventDefault()
         console.log('event.target.name', event.target.name.value)
     }
@@ -24,7 +33,7 @@ class ActivityContainer extends Component {
     render() {
         const itemControls = (
             <ButtonGroup>
-                <OverlayTrigger trigger="click" placement="right" overlay={NewPrPopover({handleSubmit:this.handlePrForm})}>
+                <OverlayTrigger trigger="click" placement="right" overlay={NewPiPopover({handleSubmit:this.handlePiForm})}>
                     <Button variant="secondary">New Item</Button>
                 </OverlayTrigger>
                 <DropdownButton as={ButtonGroup} variant="secondary" title="Sort">
@@ -36,7 +45,7 @@ class ActivityContainer extends Component {
         )
         const requestControls = (
             <ButtonGroup>
-                <OverlayTrigger trigger="click" placement="right" overlay={NewPiPopover({handleSubmit:this.handlePiForm})}>
+                <OverlayTrigger trigger="click" placement="right" overlay={NewPrPopover({handleSubmit:this.handlePrForm})}>
                     <Button variant="secondary">New Request</Button>
                 </OverlayTrigger>
                 <DropdownButton as={ButtonGroup} variant="secondary" title="Sort">
@@ -63,7 +72,7 @@ class ActivityContainer extends Component {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        newPI: () => dispatch(newPI()),
+        newPI: (pi) => dispatch(newPI(pi)),
         newPR: () => dispatch(newPR())
     }
 }
