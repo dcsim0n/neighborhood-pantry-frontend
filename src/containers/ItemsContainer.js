@@ -1,22 +1,16 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
-import PantryCard from '../components/PantryCard';
+import ItemCard from '../components/ItemCard';
 
 class ItemsContainer extends Component {
   render() {
     return (
       <div>
-        {this.props.items.map(card=><PantryCard card={card}/>)}
+        {this.props.items.map(card=><ItemCard key={card.id} card={card}/>)}
       </div>
     )
   }
-}
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        dispatch1: () => dispatch()
-        
-    }
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -25,4 +19,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(ItemsContainer)
+export default connect(mapStateToProps)(ItemsContainer)

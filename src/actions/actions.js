@@ -87,7 +87,12 @@ export const joinNeighborhood = (neighborhood)=>{
   }
 
   export const deleteItem = (id)=>{
-      return(dispatch,getState) =>{
-        
-      }
+        return(dispatch,getState) =>{
+            console.log(`Deleting id: ${id}`)
+        }
+  }
+  export const deleteReq = (id)=>{
+        return(dispatch,getState) =>{
+            console.log(`Deleting id: ${id}`)            
+        }
   }

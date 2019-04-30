@@ -1,28 +1,19 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {deleteItem} from '../actions/actions'
 
-import PantryCard from '../components/PantryCard';
+import RequestCard from '../components/RequestCard';
 
 class RequestsContainer extends Component {
     
     render() {
     return (
         <div>
-        {this.props.requests.map(card=>(
-            <PantryCard 
-            card={card}
-            delete={this.props.handleDelete}/>
-        ))}
+        {this.props.requests.map(card=><RequestCard key={card.id} card={card}/>)}
         </div>
     )
     }
 }
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        handleDelete: (id) => dispatch(deleteItem(id))
-    }
-}
+
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -30,4 +21,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(RequestsContainer)
+export default connect(mapStateToProps)(RequestsContainer)
