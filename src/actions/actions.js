@@ -38,9 +38,24 @@ export const joinNeighborhood = (neighborhood)=>{
     }
   }
 
-  export const newPR = ()=>{
+  export const newPR = (pantryRequest)=>{
       // Make a new Pantry Request
+      
       console.log("Making a new Pantry Request")
+      return (dispatch,getState) =>{
+        const {id, token} = getState().user
+        const body ={
+            token: token,
+            pantry_request: {
+                user_id: id,
+                ...pantryRequest
+            }
+        }
+        postOne(`${C.API_ROOT}/users/${id}/pantry_requests`,body,(data)=>{
+            return dispatch({type:C.UPDATE_REQUESTS, payload:data})
+        })
+    }
+
   }
 
   export const newPI = (pantryItem)=>{
@@ -57,6 +72,5 @@ export const joinNeighborhood = (neighborhood)=>{
         postOne(`${C.API_ROOT}/users/${id}/pantry_items`,body,(data)=>{
             return dispatch({type:C.UPDATE_ITEMS, payload:data})
         })
-        console.log("Making a new Pantry Item")
     }
   }

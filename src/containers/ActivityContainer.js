@@ -28,6 +28,15 @@ class ActivityContainer extends Component {
     handlePrForm = (event) => {
         event.preventDefault()
         console.log('event.target.name', event.target.name.value)
+        const {name, quantity, unit} = event.target
+        
+        const pantryRequest ={
+            name: name.value,
+            quantity: quantity.value,
+            unit: unit.value
+        }
+        console.log('pantryRequest :', pantryRequest);
+        this.props.newPR(pantryRequest)
     }
     
     render() {
@@ -73,7 +82,7 @@ class ActivityContainer extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         newPI: (pi) => dispatch(newPI(pi)),
-        newPR: () => dispatch(newPR())
+        newPR: (pr) => dispatch(newPR(pr))
     }
 }
 const mapStateToProps = (state, ownProps) => {
