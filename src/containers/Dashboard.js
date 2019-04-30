@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import {getUserInfo, getNeighborhoods} from '../actions/actions'
 import NeighborhoodSearch from './NeighborhoodSearch';
+import ActivityContainer from './ActivityContainer';
 class Dashboard extends Component {
 
   componentDidMount() {
@@ -16,7 +17,7 @@ class Dashboard extends Component {
         ?
         <NeighborhoodSearch />
         :
-        <h2>Lets trade some groceries</h2>}
+        <ActivityContainer/>}
       </div>
     )
   }
@@ -31,7 +32,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     userId: state.user.id,
-    neighborhoods: state.neighborhoods
+    neighborhoods: state.neighborhoods.all,
+    selected: state.neighborhoods.selected
   }
 }
 

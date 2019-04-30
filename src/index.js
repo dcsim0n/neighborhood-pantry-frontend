@@ -11,12 +11,14 @@ import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import userReducer from './reducers/userReducer'
 import errorsReducer from './reducers/errorsReducer'
 import neighborHoodReducer from './reducers/neighborhoodReducer';
+import pantryReducer from './reducers/pantryReducer'
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
     user: userReducer,
     errors: errorsReducer,
-    neighborhoods: neighborHoodReducer
+    neighborhoods: neighborHoodReducer,
+    pantry: pantryReducer
   })
   const composeMidleware = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   const store = createStore(
