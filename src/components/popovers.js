@@ -15,7 +15,7 @@ export const NewPiPopover = (props)=>(
 )
 
 export const NewPrPopover = (props) => (
-    <Popover {...props} id="popover-basic" title="New Item Popover">
+    <Popover {...props} id="popover-basic" title="New Request Popover">
         Lets make a new item
         <Form onSubmit={props.handleSubmit}>
             <FormControl name="name" type="text" placeholder="What is it?" />
