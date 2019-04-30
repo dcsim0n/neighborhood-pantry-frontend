@@ -4,7 +4,7 @@ import {newPI,newPR} from '../actions/actions';
 import PantryContainer from './PantryContainer'
 
 import {ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button,} from 'react-bootstrap';
-import {NewPiPopover} from '../components/popovers';
+import {NewPiPopover,NewPrPopover} from '../components/popovers';
 
 class ActivityContainer extends Component {
 
@@ -12,11 +12,19 @@ class ActivityContainer extends Component {
         //Fetch items and requests here?
     }
     
+    handlePiForm(event){
+        event.preventDefault()
+        console.log('event.target.name', event.target.name.value)
+    }
+    handlePrForm(event){
+        event.preventDefault()
+        console.log('event.target.name', event.target.name.value)
+    }
     
     render() {
         const itemControls = (
             <ButtonGroup>
-                <OverlayTrigger trigger="click" placement="right" overlay={NewPiPopover({handleSubmit:this.props.newPI})}>
+                <OverlayTrigger trigger="click" placement="right" overlay={NewPrPopover({handleSubmit:this.handlePrForm})}>
                     <Button variant="secondary">New Item</Button>
                 </OverlayTrigger>
                 <DropdownButton as={ButtonGroup} variant="secondary" title="Sort">
@@ -28,7 +36,7 @@ class ActivityContainer extends Component {
         )
         const requestControls = (
             <ButtonGroup>
-                <OverlayTrigger trigger="click" placement="right" overlay={NewPiPopover}>
+                <OverlayTrigger trigger="click" placement="right" overlay={NewPiPopover({handleSubmit:this.handlePiForm})}>
                     <Button variant="secondary">New Request</Button>
                 </OverlayTrigger>
                 <DropdownButton as={ButtonGroup} variant="secondary" title="Sort">
@@ -43,11 +51,11 @@ class ActivityContainer extends Component {
                 <h2>Your Neighborhood: {this.props.selectedNH.name}</h2>
                 <PantryContainer 
                 title="Pantry Requests"
-                controls={itemControls} />
+                controls={requestControls} />
                     
                 <PantryContainer
                 title="Pantry Items"
-                controls={requestControls} />
+                controls={itemControls} />
             </div>
         )
   }
