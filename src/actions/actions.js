@@ -85,3 +85,9 @@ export const joinNeighborhood = (neighborhood)=>{
         })
     }
   }
+
+  export const deleteItem = (id)=>{
+      return(dispatch,getState) =>{
+        
+      }
+  }

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux';
 import {newPI,newPR,getNHInfo} from '../actions/actions';
 import PantryContainer from './PantryContainer'
-
+import ItemsContainer from './ItemsContainer';
+import RequestsContainer from './RequestsContainer'
 import {ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button,} from 'react-bootstrap';
 import {NewPiPopover,NewPrPopover} from '../components/popovers';
 
@@ -70,13 +71,15 @@ class ActivityContainer extends Component {
                 <h2>Your Neighborhood: {this.props.selectedNH.name}</h2>
                 <PantryContainer 
                 title="Pantry Requests"
-                controls={requestControls}
-                cards={this.props.requests} />
+                controls={requestControls}>
+                    <RequestsContainer />
+                </PantryContainer>
                     
                 <PantryContainer
                 title="Pantry Items"
-                controls={itemControls}
-                cards={this.props.items} />
+                controls={itemControls}>
+                    <ItemsContainer />
+                </PantryContainer>
             </div>
         )
   }
@@ -91,9 +94,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        selectedNH: state.neighborhoods.selected,
-        items: state.pantry.items,
-        requests: state.pantry.requests
+        selectedNH: state.neighborhoods.selected
     }
 }
 

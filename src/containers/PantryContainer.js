@@ -1,5 +1,4 @@
 import React from 'react'
-import PantryCard from '../components/PantryCard';
 import {Col, Row, Container } from 'react-bootstrap';
 
 export default function PantryContainer(props) {
@@ -18,13 +17,7 @@ export default function PantryContainer(props) {
             </Row>
         </Container>
         <div >
-                
-                {props.cards.map(card=>(
-                    
-                        <PantryCard card={card}/>
-                    
-                ))}
-                
+                {props.children}
         </div>
     </div>
   )
