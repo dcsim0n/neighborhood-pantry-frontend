@@ -12,10 +12,11 @@ class ActivityContainer extends Component {
         //Fetch items and requests here?
     }
     
+    
     render() {
         const itemControls = (
             <ButtonGroup>
-                <OverlayTrigger trigger="click" placement="right" overlay={NewPiPopover}>
+                <OverlayTrigger trigger="click" placement="right" overlay={NewPiPopover({handleSubmit:this.props.newPI})}>
                     <Button variant="secondary">New Item</Button>
                 </OverlayTrigger>
                 <DropdownButton as={ButtonGroup} variant="secondary" title="Sort">
