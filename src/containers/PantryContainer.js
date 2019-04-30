@@ -1,12 +1,8 @@
 import React from 'react'
 
-import {
-    Col, Row, Container, ButtonGroup, Dropdown, 
-    DropdownButton, Button, OverlayTrigger 
-} from 'react-bootstrap';
+import {Col, Row, Container } from 'react-bootstrap';
 
 import NHCard from '../components/NHCard';
-import {NewPiPopover} from '../components/popovers';
 export default function PantryContainer(props) {
     
   return (
@@ -14,21 +10,11 @@ export default function PantryContainer(props) {
     <Container>
         <Row> 
             <Col lg="3">
-                <h3>{props.content}</h3>
+                <h3>{props.title}</h3>
             
             </Col>
             <Col>
-                <ButtonGroup>
-                    <OverlayTrigger trigger="click" placement="bottom" overlay={NewPiPopover}>
-                        <Button variant="secondary">New Item</Button>
-                    </OverlayTrigger>
-                    <DropdownButton as={ButtonGroup} variant="secondary" title="Sort">
-                        <Dropdown.Item  eventKey="1">Newest First</Dropdown.Item>
-                        <Dropdown.Item eventKey="1">Oldest First</Dropdown.Item>
-                    </DropdownButton>
-                    <Button variant="secondary">Show More</Button>
-                    
-                </ButtonGroup>
+                {props.controls}
             </Col>
         </Row>
         </Container>
