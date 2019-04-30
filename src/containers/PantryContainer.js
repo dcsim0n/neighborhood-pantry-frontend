@@ -1,8 +1,7 @@
 import React from 'react'
-
+import PantryCard from '../components/PantryCard';
 import {Col, Row, Container } from 'react-bootstrap';
 
-import NHCard from '../components/NHCard';
 export default function PantryContainer(props) {
     
   return (
@@ -17,9 +16,15 @@ export default function PantryContainer(props) {
                 {props.controls}
             </Col>
         </Row>
-        </Container>
-        <Container >
-            <NHCard place={{name:"Add a new Item"}} />
+    </Container>
+    <Container fluid="false" className="border" >
+            <Row>
+            {props.cards.map(card=>(
+                <Col>
+                    <PantryCard card={card}/>
+                </Col>
+            ))}
+            </Row>
         </Container>
     </div>
   )

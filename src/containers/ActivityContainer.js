@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
-import {newPI,newPR} from '../actions/actions';
+import {newPI,newPR,getNHInfo} from '../actions/actions';
 import PantryContainer from './PantryContainer'
 
 import {ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button,} from 'react-bootstrap';
@@ -10,6 +10,7 @@ class ActivityContainer extends Component {
 
     componentDidMount(){
         //Fetch items and requests here?
+        this.props.getNHInfo()
     }
     
     handlePiForm = (event) => {
@@ -69,11 +70,13 @@ class ActivityContainer extends Component {
                 <h2>Your Neighborhood: {this.props.selectedNH.name}</h2>
                 <PantryContainer 
                 title="Pantry Requests"
-                controls={requestControls} />
+                controls={requestControls}
+                cards={this.props.requests} />
                     
                 <PantryContainer
                 title="Pantry Items"
-                controls={itemControls} />
+                controls={itemControls}
+                cards={this.props.items} />
             </div>
         )
   }
@@ -82,12 +85,15 @@ class ActivityContainer extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         newPI: (pi) => dispatch(newPI(pi)),
-        newPR: (pr) => dispatch(newPR(pr))
+        newPR: (pr) => dispatch(newPR(pr)),
+        getNHInfo: ()=> dispatch(getNHInfo())
     }
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        selectedNH: state.neighborhoods.selected
+        selectedNH: state.neighborhoods.selected,
+        items: state.pantry.items,
+        requests: state.pantry.requests
     }
 }
 

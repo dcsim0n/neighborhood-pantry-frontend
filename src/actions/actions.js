@@ -12,8 +12,19 @@ export const getNeighborhoods = () => {
     return (dispatch,getState)=> {
         const {id, token} = getState().user
         fetchAll(`${C.API_ROOT}/users/${id}/neighborhoods?token=${token}`,(data)=>{
-        return dispatch({type: C.SET_USER_NEIGHBORHOODS, payload: data})
+            dispatch({type: C.SET_USER_NEIGHBORHOODS, payload: data})
     })}
+}
+
+export const getNHInfo =() =>{
+    return (dispatch,getState)=>{
+        const{id} = getState().neighborhoods.selected
+        const {token} = getState().user
+        fetchAll(`${C.API_ROOT}/neighborhoods/${id}?token=${token}`,(data)=>{
+            dispatch({type: C.UPDATE_ITEMS, payload: data.items})
+            dispatch({type: C.UPDATE_REQUESTS, payload: data.requests})
+        })
+    }
 }
 
 export const getUserInfo = () =>{
@@ -21,7 +32,7 @@ export const getUserInfo = () =>{
     return (dispatch,getState)=> {
         const {id, token} = getState().user
         fetchAll(`${C.API_ROOT}/users/${id}?token=${token}`,(info)=>{
-        return dispatch({type: C.USER_INFO, payload: info})
+            dispatch({type: C.USER_INFO, payload: info})
     })}
 }
 export const joinNeighborhood = (neighborhood)=>{
@@ -32,7 +43,7 @@ export const joinNeighborhood = (neighborhood)=>{
             neighborhood_id: neighborhood.id
         }
         postOne(`${C.API_ROOT}/users/${id}/neighbors`,body,(data)=>{
-                return dispatch({type:C.SET_USER_NEIGHBORHOODS,payload:data})
+                dispatch({type:C.SET_USER_NEIGHBORHOODS,payload:data})
             }
         )
     }
@@ -52,7 +63,7 @@ export const joinNeighborhood = (neighborhood)=>{
             }
         }
         postOne(`${C.API_ROOT}/users/${id}/pantry_requests`,body,(data)=>{
-            return dispatch({type:C.UPDATE_REQUESTS, payload:data})
+            dispatch(getNHInfo())
         })
     }
 
@@ -70,7 +81,7 @@ export const joinNeighborhood = (neighborhood)=>{
             }
         }
         postOne(`${C.API_ROOT}/users/${id}/pantry_items`,body,(data)=>{
-            return dispatch({type:C.UPDATE_ITEMS, payload:data})
+            dispatch(getNHInfo())
         })
     }
   }
