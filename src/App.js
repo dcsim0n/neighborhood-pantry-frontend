@@ -21,7 +21,7 @@ function App(props) {
         </Row>
         <Row>
           <Col> <LeftNav /> </Col>
-          <Col lg="10"> 
+          <Col lg="9"> 
             <Switch>
               <Route path="/signup" render={()=><SignupForm/>} />
               <Route path="/" render={()=>(

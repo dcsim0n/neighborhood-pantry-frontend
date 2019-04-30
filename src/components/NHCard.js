@@ -1,7 +1,7 @@
 import React from 'react'
 import {Card,Button,Col} from 'react-bootstrap';
 
-export default function PlaceCard(props) {
+export default function NHCard(props) {
   const {place} = props
   return (
     <Col>

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import {fetchAll} from '../fetch';
 import C from '../constants'
-import {Card, Container, Col, Form, Button, InputGroup, FormControl} from 'react-bootstrap'
-import {postOne} from '../fetch';
 import {connect} from 'react-redux'
 
-import NeighborhoodCard from '../components/NeighborhoodCard'
-import PlaceCard from '../components/PlaceCard';
+import {Card, Container, Col, Form, Button, InputGroup, FormControl} from 'react-bootstrap'
+import {fetchAll, postOne} from '../fetch';
 import { joinNeighborhood } from '../actions/actions';
+
+import NHCard from '../components/NHCard'
+import PlaceCard from '../components/PlaceCard';
 
 class NeighborhoodSearch extends Component {
   constructor(props) {
@@ -73,7 +73,7 @@ class NeighborhoodSearch extends Component {
               </InputGroup>
               <Card.Title>Neighborhoods in your area:</Card.Title>
               <Col lg="8">
-                {this.state.nearby.map((place)=><NeighborhoodCard place={place} handleClick={this.props.handleJoin} />)}
+                {this.state.nearby.map((place)=><NHCard place={place} handleClick={this.props.handleJoin} />)}
               </Col>
 
           </Card.Body>
