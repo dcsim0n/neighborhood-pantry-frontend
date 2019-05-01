@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
-import {newPI,newPR,getNHInfo} from '../actions/actions';
+import {newPI,newPR,getNHInfo, deleteReq, deleteItem} from '../actions/actions';
 import PantryContainer from './PantryContainer'
 
 import {ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button,} from 'react-bootstrap';
@@ -24,7 +24,7 @@ class ActivityContainer extends Component {
             unit: unit.value
         }
         console.log('pantryItem :', pantryItem);
-        this.props.newPI(pantryItem)
+        this.props.itemInterface.newPI(pantryItem)
     }
     handlePrForm = (event) => {
         event.preventDefault()
@@ -37,7 +37,7 @@ class ActivityContainer extends Component {
             unit: unit.value
         }
         console.log('pantryRequest :', pantryRequest);
-        this.props.newPR(pantryRequest)
+        this.props.requestInterface.newPR(pantryRequest)
     }
     
     render() {
@@ -71,12 +71,14 @@ class ActivityContainer extends Component {
                 <PantryContainer 
                 title="Pantry Requests"
                 controls={requestControls}
-                cards={this.props.requests} />
+                cards={this.props.requests}
+                handlers={this.props.requestInterface} />
                     
                 <PantryContainer
                 title="Pantry Items"
                 controls={itemControls}
-                cards={this.props.items} />
+                cards={this.props.items}
+                handlers={this.props.itemInterface} />
             </div>
         )
   }
@@ -84,8 +86,14 @@ class ActivityContainer extends Component {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        newPI: (pi) => dispatch(newPI(pi)),
-        newPR: (pr) => dispatch(newPR(pr)),
+        itemInterface:{
+            delete: (id)=>dispatch(deleteItem(id)),
+            newPI: (pi) => dispatch(newPI(pi)),
+        },
+        requestInterface:{
+            delete: (id)=>dispatch(deleteReq(id)),
+            newPR: (pr) => dispatch(newPR(pr))
+        },
         getNHInfo: ()=> dispatch(getNHInfo())
     }
 }

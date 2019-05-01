@@ -1,5 +1,5 @@
 import C from '../constants'
-import {fetchAll,postOne} from '../fetch'
+import {fetchAll,postOne,deleteOne} from '../fetch'
 
 export const startFetch = () =>{
     return {type: C.FETCHING, payload: true}
@@ -81,6 +81,23 @@ export const joinNeighborhood = (neighborhood)=>{
             }
         }
         postOne(`${C.API_ROOT}/users/${id}/pantry_items`,body,(data)=>{
+            dispatch(getNHInfo())
+        })
+    }
+  }
+
+  export const deleteItem = (id)=>{
+        return(dispatch,getState) =>{
+            const token = getState().user.token
+            deleteOne(`${C.API_ROOT}/pantry_items`,`${id}?token=${token}`,(data)=>{
+                dispatch(getNHInfo())
+            })
+        }
+  }
+  export const deleteReq = (id)=>{
+    return(dispatch,getState) =>{
+        const token = getState().user.token
+        deleteOne(`${C.API_ROOT}/pantry_requests`,`${id}?token=${token}`,(data)=>{
             dispatch(getNHInfo())
         })
     }

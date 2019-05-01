@@ -21,7 +21,7 @@ export default function PantryContainer(props) {
                 
                 {props.cards.map(card=>(
                     
-                        <PantryCard card={card}/>
+                        <PantryCard handlers={props.handlers} card={card}/>
                     
                 ))}
                 
