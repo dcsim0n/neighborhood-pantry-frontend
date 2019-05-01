@@ -26,11 +26,11 @@ class RequestsContainer extends Component {
                 <Container>
                     <Row> 
                         <Col lg="3">
-                          <h3>Pantry Items</h3>
+                          <h3>Pantry Requests</h3>
                         </Col>
                         <Col>
                           <ButtonGroup>
-                            <OverlayTrigger trigger="click" placement="right" overlay={NewPrPopover({handleSubmit:this.handlePiForm})}>
+                            <OverlayTrigger trigger="click" placement="right" overlay={NewPrPopover({handleSubmit:this.handlePrForm})}>
                               <Button variant="secondary">New Item</Button>
                             </OverlayTrigger>
                             <DropdownButton as={ButtonGroup} variant="secondary" title="Sort">
