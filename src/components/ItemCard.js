@@ -10,11 +10,12 @@ function PantryCard(props) {
           <i className="fas fa-trash-alt" onClick={()=>props.handleDelete(props.card.id)}></i> 
           <i className="fas fa-info-circle"></i>
         </Card.Title>
-        <ul>
-          <li>{props.card.quantity}: {props.card.unit}</li>
-          <li>{props.card.user.first_name} {props.card.user.last_name}</li>
-        </ul>
-
+        <Card.Body>
+        <dl>
+          <dt>{props.card.quantity}: {props.card.unit}</dt>
+          <dd>{props.card.user.first_name} {props.card.user.last_name}</dd>
+        </dl>
+        </Card.Body>
       
     </Card>
   )

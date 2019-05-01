@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Card} from 'react-bootstrap'
-
+import {Card,OverlayTrigger} from 'react-bootstrap'
+import {PrInfoPopover} from './popovers';
 import {deleteReq} from '../actions/actions';
 
 function RequestCard(props) {
@@ -11,12 +11,16 @@ function RequestCard(props) {
         <Card.Title>
           {props.card.name} 
           <i className="fas fa-trash-alt" onClick={()=>props.handleDelete(props.card.id)}></i> 
-          <i className="fas fa-info-circle"></i>
+          <OverlayTrigger trigger="click" placement="bottom" overlay={PrInfoPopover} >
+            <i className="fas fa-info-circle"></i>
+          </OverlayTrigger>
         </Card.Title>
-        <ul>
-          <li>{props.card.quantity}: {props.card.unit}</li>
-          <li>{props.card.user.first_name} {props.card.user.last_name}</li>
-        </ul>
+        <Card.Body>
+        <dl>
+          <dt>{props.card.quantity}: {props.card.unit}</dt>
+          <dd>{props.card.user.first_name} {props.card.user.last_name}</dd>
+        </dl>
+        </Card.Body>
 
       
     </Card>
