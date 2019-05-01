@@ -73,7 +73,7 @@ class NeighborhoodSearch extends Component {
               </InputGroup>
               <Card.Title>Neighborhoods in your area:</Card.Title>
               <Col lg="8">
-                {this.state.nearby.map((place)=><NHCard place={place} handleClick={this.props.handleJoin} />)}
+                {this.state.nearby.map((place,idx)=><NHCard key={idx} place={place} handleClick={this.props.handleJoin} />)}
               </Col>
 
           </Card.Body>
