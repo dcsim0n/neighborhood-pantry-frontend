@@ -31,7 +31,7 @@ class RequestsContainer extends Component {
                         <Col>
                           <ButtonGroup>
                             <OverlayTrigger trigger="click" placement="right" overlay={NewPrPopover({handleSubmit:this.handlePrForm})}>
-                              <Button variant="secondary">New Item</Button>
+                              <Button variant="secondary">New Request</Button>
                             </OverlayTrigger>
                             <DropdownButton as={ButtonGroup} variant="secondary" title="Sort">
                               <Dropdown.Item  eventKey="1">Newest First</Dropdown.Item>
