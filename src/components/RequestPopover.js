@@ -3,7 +3,7 @@ import {Table, Form, Popover, FormControl, Button} from 'react-bootstrap'
 import {fetchAll, postOne} from '../fetch';
 import C from '../constants';
 
-export default class PrInfoPopover extends React.Component {
+export default class RequestPopover extends React.Component {
 
     constructor(props){
         super(props)
@@ -48,6 +48,7 @@ export default class PrInfoPopover extends React.Component {
                 <td>{offer.created_at}</td>
             </tr>
         ))
+
     }
     render(){
         return(
