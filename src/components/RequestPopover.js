@@ -24,8 +24,9 @@ export default class PrInfoPopover extends React.Component {
             quantity: this.state.quantity
         }
         postOne(`${C.API_ROOT}/users/${id}/offers`,body,(data)=>{
+            console.log(data)
             const newOffers = [data,...this.state.offers]
-            this.setState({offers:[newOffers]})
+            this.setState({offers:newOffers})
         })
         event.target.reset()
     }
@@ -39,10 +40,11 @@ export default class PrInfoPopover extends React.Component {
         })
     }
     generateRows(){
+        console.log(this.state.offers)
         return this.state.offers.map(offer=>(
-            <tr>
+            <tr key={offer.id}>
                 <td>{offer.quantity}</td>
-                <td>{offer.id}</td>
+                <td>{offer.user.first_name}</td>
                 <td>{offer.created_at}</td>
             </tr>
         ))

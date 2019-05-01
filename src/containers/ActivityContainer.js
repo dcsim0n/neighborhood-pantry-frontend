@@ -10,10 +10,6 @@ class ActivityContainer extends Component {
         //Fetch items and requests here?
         this.props.dispatch(getNHInfo())
     }
-    
-    
-    
-    
     render() {
         return (
             <div>

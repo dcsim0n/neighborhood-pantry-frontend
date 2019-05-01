@@ -30,7 +30,13 @@ export default (state = initialState, action) => {
             console.log("logging out..")
             localStorage.clear()
 
-            return initialState
+            return {
+                token: null,
+                firstName: null,
+                lastName: null ,
+                email: null,
+                id: null
+            }
         case C.USER_INFO: {
             const {first_name, last_name, email, id} = action.payload
             const newState = {
