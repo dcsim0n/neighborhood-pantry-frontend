@@ -102,3 +102,6 @@ export const joinNeighborhood = (neighborhood)=>{
         })
     }
   }
+  export const logOut = ()=>{
+      return {type:C.LOG_OUT}
+  }
