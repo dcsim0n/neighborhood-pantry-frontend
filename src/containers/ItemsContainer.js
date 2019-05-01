@@ -25,13 +25,13 @@ class ItemsContainer extends Component {
       <div className="border">
           <Container>
               <Row> 
-                  <Col lg="3">
-                    <h3>Pantry Items</h3>
+                  <Col lg="5">
+                    <h3>Your neighbors are sharing...</h3>
                   </Col>
                   <Col>
                     <ButtonGroup>
                       <OverlayTrigger trigger="click" placement="right" overlay={NewPiPopover({handleSubmit:this.handlePiForm})}>
-                        <Button variant="secondary">New Item</Button>
+                        <Button variant="secondary">Share Food</Button>
                       </OverlayTrigger>
                       <DropdownButton as={ButtonGroup} variant="secondary" title="Sort">
                         <Dropdown.Item  eventKey="1">Newest First</Dropdown.Item>

@@ -25,13 +25,13 @@ class RequestsContainer extends Component {
             <div className="border">
                 <Container>
                     <Row> 
-                        <Col lg="3">
-                          <h3>Pantry Requests</h3>
+                        <Col lg="5">
+                          <h3>Your neighbors are looking for ...</h3>
                         </Col>
                         <Col>
                           <ButtonGroup>
                             <OverlayTrigger trigger="click" placement="right" overlay={NewPrPopover({handleSubmit:this.handlePrForm})}>
-                              <Button variant="secondary">New Request</Button>
+                              <Button variant="secondary">Request Food</Button>
                             </OverlayTrigger>
                             <DropdownButton as={ButtonGroup} variant="secondary" title="Sort">
                               <Dropdown.Item  eventKey="1">Newest First</Dropdown.Item>

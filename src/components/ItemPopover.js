@@ -3,30 +3,30 @@ import {Table, Form, Popover, FormControl, Button} from 'react-bootstrap'
 import {fetchAll, postOne} from '../fetch';
 import C from '../constants';
 
-export default class RequestPopover extends React.Component {
+export default class ItemPopover extends React.Component {
 
     constructor(props){
         super(props)
         this.state = {
-            request_id: props.card.id,
+            item_id: props.card.id,
             quantity: 0,
-            offers:[]
+            claims:[]
         }
     }
     handleSubmit = (event) =>{
         event.preventDefault()
         const {token, id} = this.props.user
-        // URL: api_root/users/{current_user}/offers
-        // {request_id: #, quantity: #}
+        // URL: api_root/users/{current_user}/claims
+        // {claim_id: #, quantity: #}
         const body = {
             token,
-            pantry_request_id: this.state.request_id,
+            pantry_item_id: this.state.item_id,
             quantity: this.state.quantity
         }
-        postOne(`${C.API_ROOT}/users/${id}/offers`,body,(data)=>{
+        postOne(`${C.API_ROOT}/users/${id}/claims`,body,(data)=>{
             console.log(data)
-            const newOffers = [data,...this.state.offers]
-            this.setState({offers:newOffers})
+            const newClaims = [data,...this.state.claims]
+            this.setState({claims:newClaims})
         })
         event.target.reset()
     }
@@ -35,38 +35,37 @@ export default class RequestPopover extends React.Component {
     }
     componentDidMount(){
         const {token} = this.props.user
-        fetchAll(`${C.API_ROOT}/pantry_requests/${this.state.request_id}?token=${token}`,(data)=>{
-            this.setState({offers: data.offers})
+        fetchAll(`${C.API_ROOT}/pantry_items/${this.state.item_id}?token=${token}`,(data)=>{
+            this.setState({claims: data.claims})
         })
     }
     generateRows(){
-        console.log(this.state.offers)
-        return this.state.offers.map(offer=>(
-            <tr key={offer.id}>
-                <td>{offer.quantity}</td>
-                <td>{offer.user.first_name}</td>
-                <td>{offer.created_at}</td>
+        console.log(this.state.claims)
+        return this.state.claims.map(claim=>(
+            <tr key={claim.id}>
+                <td>{claim.quantity}</td>
+                <td>{claim.user.first_name}</td>
+                <td>{claim.created_at}</td>
             </tr>
         ))
 
     }
     render(){
         return(
-            <Popover {...this.props} id="popover-basic" title="Make an offer">
+            <Popover {...this.props} id="popover-basic" title="Would you like some?">
                 <Form onSubmit={this.handleSubmit}>
                     <Table striped bordered hover>
                         <thead>
                         <tr>
-                            <th>Offered</th>
+                            <th># Claimed</th>
                             <th>Who?</th>
                             <th>Date</th>
-                            <th>Approved</th>
                         </tr>
                         </thead>
                         <tbody>
                             {this.generateRows()}
                             <tr>
-                                <td colSpan="3">
+                                <td colSpan="2">
                                     <FormControl onChange={this.handleChange} type="number" placeholder="Your offer?" />
                                 </td> 
                                 <td>
