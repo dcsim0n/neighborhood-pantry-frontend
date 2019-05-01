@@ -12,7 +12,7 @@ function RequestCard(props) {
           {props.card.name} 
           <i className="fas fa-trash-alt" onClick={()=>props.handleDelete(props.card.id)}></i> 
           <OverlayTrigger trigger="click" placement="bottom" overlay={
-            <RequestPopover card={props.card} />
+            <RequestPopover user={props.user} card={props.card} />
             } >
             <i className="fas fa-info-circle"></i>
           </OverlayTrigger>
@@ -33,4 +33,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleDelete: (id) => dispatch(deleteReq(id))
   }
 }
-export default connect(null,mapDispatchToProps)(RequestCard)
+const mapStateToProps = (state,ownProps) =>{
+  return {
+    user: state.user
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(RequestCard)

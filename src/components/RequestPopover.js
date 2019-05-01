@@ -15,15 +15,37 @@ export default class PrInfoPopover extends React.Component {
     }
     handleSubmit = (event) =>{
         event.preventDefault()
-        
+        const {token, id} = this.props.user
+        // URL: api_root/users/{current_user}/offers
+        // {request_id: #, quantity: #}
+        const body = {
+            token,
+            pantry_request_id: this.state.request_id,
+            quantity: this.state.quantity
+        }
+        postOne(`${C.API_ROOT}/users/${id}/offers`,body,(data)=>{
+            const newOffers = [data,...this.state.offers]
+            this.setState({offers:[newOffers]})
+        })
+        event.target.reset()
     }
     handleChange = (event) =>{
         this.setState({quantity: event.target.value})
     }
     componentDidMount(){
-        fetchAll(`${C.API_ROOT}/pantry_requests/${this.state.request_id}`,(data)=>{
-            console.log('data :', data);
+        const {token} = this.props.user
+        fetchAll(`${C.API_ROOT}/pantry_requests/${this.state.request_id}?token=${token}`,(data)=>{
+            this.setState({offers: data.offers})
         })
+    }
+    generateRows(){
+        return this.state.offers.map(offer=>(
+            <tr>
+                <td>{offer.quantity}</td>
+                <td>{offer.id}</td>
+                <td>{offer.created_at}</td>
+            </tr>
+        ))
     }
     render(){
         return(
@@ -38,7 +60,7 @@ export default class PrInfoPopover extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                            {/*Put more rows here */}
+                            {this.generateRows()}
                             <tr>
                                 <td colSpan="2">
                                     <FormControl onChange={this.handleChange} type="number" placeholder="Your offer?" />
