@@ -37,6 +37,7 @@ export default class ItemPopover extends React.Component {
         const {token} = this.props.user
         fetchAll(`${C.API_ROOT}/pantry_items/${this.state.item_id}?token=${token}`,(data)=>{
             this.setState({claims: data.claims})
+            this.forceUpdate()
         })
     }
     generateRows(){
@@ -66,7 +67,7 @@ export default class ItemPopover extends React.Component {
                             {this.generateRows()}
                             <tr>
                                 <td colSpan="2">
-                                    <FormControl onChange={this.handleChange} type="number" placeholder="Your offer?" />
+                                    <FormControl onChange={this.handleChange} type="number" placeholder="How much?" />
                                 </td> 
                                 <td>
                                     <Button type="submit">+</Button>

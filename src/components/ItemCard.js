@@ -1,24 +1,32 @@
 import React from 'react'
-import {Card,OverlayTrigger} from 'react-bootstrap'
+import {Card,OverlayTrigger,Navbar, Button} from 'react-bootstrap'
 import { connect } from 'react-redux';
 import {deleteItem} from '../actions/actions';
 import ItemPopover from './ItemPopover'
 function PantryCard(props) {
   return (
-    <Card style={{width:"12em"}}>
+    <Card className="w-50 shadow-sm">
         <Card.Header>
-          {props.card.name} 
-          <i className="fas fa-trash-alt" onClick={()=>props.handleDelete(props.card.id)}></i> 
-          <OverlayTrigger trigger="click" placement="bottom" overlay={
-            <ItemPopover user={props.user} card={props.card} />
-            } >
-            <i className="fas fa-info-circle"></i>
-          </OverlayTrigger>
+          <Navbar>
+            <Navbar.Brand>
+              {props.card.name} 
+            </Navbar.Brand>
+            <Navbar.Collapse className="justify-content-end">
+              <i className="fas fa-trash-alt" onClick={()=>props.handleDelete(props.card.id)}></i> 
+              
+
+            </Navbar.Collapse>
+          </Navbar>
         </Card.Header>
         <Card.Body>
           <dl>
             <dt>{props.card.quantity}: {props.card.unit}</dt>
           </dl>
+          <OverlayTrigger trigger="click" placement="top" overlay={
+                <ItemPopover user={props.user} card={props.card} />
+                } >
+                <Button> I want some!</Button>
+              </OverlayTrigger>
         </Card.Body>
 
       <Card.Footer>

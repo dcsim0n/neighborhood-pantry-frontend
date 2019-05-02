@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {newPR} from '../actions/actions';
-import {Col, Row, Container,ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button, CardDeck } from 'react-bootstrap';
+import {ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button, CardDeck, Navbar } from 'react-bootstrap';
 import {NewPrPopover} from '../components/popovers';
 
 import RequestCard from '../components/RequestCard';
+import NavbarCollapse from 'react-bootstrap/NavbarCollapse';
 
 class RequestsContainer extends Component {
     handlePrForm = (event) => {
@@ -23,12 +24,11 @@ class RequestsContainer extends Component {
     render() {
         return (
             <div className="border">
-                <Container>
-                    <Row> 
-                        <Col lg="5">
-                          <h3>Your neighbors are looking for ...</h3>
-                        </Col>
-                        <Col>
+              <Navbar bg="dark" variant="dark">
+                <Navbar.Brand >
+                          Your neighbors are looking for ..
+                </Navbar.Brand>
+                <Navbar.Collapse className="justify-content-end">
                           <ButtonGroup>
                             <OverlayTrigger trigger="click" placement="right" overlay={NewPrPopover({handleSubmit:this.handlePrForm})}>
                               <Button variant="secondary">Request Food</Button>
@@ -39,9 +39,9 @@ class RequestsContainer extends Component {
                             </DropdownButton>
                             <Button variant="secondary">Show More</Button>
                           </ButtonGroup>
-                        </Col>
-                    </Row>
-                </Container>
+                </Navbar.Collapse>
+              </Navbar>  
+ 
                 <CardDeck >
                   {this.props.requests.map(card=><RequestCard key={card.id} card={card}/>)}
                 </CardDeck>

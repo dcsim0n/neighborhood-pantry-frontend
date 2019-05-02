@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Col, Row, Container,ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button } from 'react-bootstrap';
+import {Col, Row, Container,ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button, CardDeck, Navbar } from 'react-bootstrap';
 
 import {connect} from 'react-redux'
 import {newPI} from '../actions/actions';
@@ -23,13 +23,14 @@ class ItemsContainer extends Component {
   render(){
     return (
       <div className="border">
-          <Container>
-              <Row> 
-                  <Col lg="5">
-                    <h3>Your neighbors are sharing...</h3>
-                  </Col>
-                  <Col>
-                    <ButtonGroup>
+        <Navbar  bg="dark" variant="dark" className="shadow">
+          <Navbar.Brand>
+                    Your neighbors are sharing...
+
+          </Navbar.Brand>
+          <Navbar.Collapse className="justify-content-end">
+
+                    <ButtonGroup >
                       <OverlayTrigger trigger="click" placement="right" overlay={NewPiPopover({handleSubmit:this.handlePiForm})}>
                         <Button variant="secondary">Share Food</Button>
                       </OverlayTrigger>
@@ -39,12 +40,11 @@ class ItemsContainer extends Component {
                       </DropdownButton>
                       <Button variant="secondary">Show More</Button>
                     </ButtonGroup>
-                  </Col>
-              </Row>
-          </Container>
-          <div >
+          </Navbar.Collapse>
+          </Navbar>
+          <CardDeck >
             {this.props.items.map(card=><ItemCard key={card.id} card={card}/>)}
-          </div>
+          </CardDeck>
       </div>
     )
   }  
