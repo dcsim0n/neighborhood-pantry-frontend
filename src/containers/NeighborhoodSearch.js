@@ -61,18 +61,21 @@ class NeighborhoodSearch extends Component {
 
   render() {
     return (
-      <div>
+      <div className="shadow">
         <Card>
           <Card.Body>
-              <Card.Title>Find your Neighborhood</Card.Title>
+              <h3>Find your Neighborhood</h3>
               <label htmlFor="search-radius">Adjust the search radius</label>
               
-                <FormControl style={{width:"8em"}} id="search-radius" type="number" value={this.state.searchRadius} />
+                <FormControl style={{width:"8em"}}
+                  id="search-radius" type="number" 
+                  value={this.state.searchRadius} 
+                  onChange={(e)=>this.setState({searchRadius: e.target.value})}/>
           
               <Card.Title>Neighborhoods in your area:</Card.Title>
-              <Col lg="8">
+              
                 {this.state.nearby.map((place,idx)=><NHCard key={idx} place={place} handleClick={this.props.handleJoin} />)}
-              </Col>
+              
 
           </Card.Body>
         </Card>

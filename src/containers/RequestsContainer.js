@@ -5,7 +5,6 @@ import {ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button, CardDeck,
 import {NewPrPopover} from '../components/popovers';
 
 import RequestCard from '../components/RequestCard';
-import NavbarCollapse from 'react-bootstrap/NavbarCollapse';
 
 class RequestsContainer extends Component {
     handlePrForm = (event) => {

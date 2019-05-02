@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.css'
+import './css/index.css'
 import 'react-bootstrap';
 
 import React from 'react';
