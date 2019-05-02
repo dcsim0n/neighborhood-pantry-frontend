@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {newPR} from '../actions/actions';
-import {Col, Row, Container,ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button } from 'react-bootstrap';
+import {Col, Row, Container,ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button, CardDeck } from 'react-bootstrap';
 import {NewPrPopover} from '../components/popovers';
 
 import RequestCard from '../components/RequestCard';
@@ -42,9 +42,9 @@ class RequestsContainer extends Component {
                         </Col>
                     </Row>
                 </Container>
-                <div >
+                <CardDeck >
                   {this.props.requests.map(card=><RequestCard key={card.id} card={card}/>)}
-                </div>
+                </CardDeck>
             </div>
         )} 
 }

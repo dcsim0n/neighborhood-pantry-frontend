@@ -37,3 +37,12 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+store.subscribe(()=>{
+  try {
+    localStorage['neighborhood-pantry'] = JSON.stringify(store.getState())
+  }
+  catch(err){
+    console.log('err', err)
+  }
+})

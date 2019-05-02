@@ -5,8 +5,8 @@ import {deleteItem} from '../actions/actions';
 import ItemPopover from './ItemPopover'
 function PantryCard(props) {
   return (
-    <Card style={{width:"12em", display:"inline-block"}}>
-        <Card.Title>
+    <Card style={{width:"12em"}}>
+        <Card.Header>
           {props.card.name} 
           <i className="fas fa-trash-alt" onClick={()=>props.handleDelete(props.card.id)}></i> 
           <OverlayTrigger trigger="click" placement="bottom" overlay={
@@ -14,15 +14,16 @@ function PantryCard(props) {
             } >
             <i className="fas fa-info-circle"></i>
           </OverlayTrigger>
-        </Card.Title>
+        </Card.Header>
         <Card.Body>
           <dl>
             <dt>{props.card.quantity}: {props.card.unit}</dt>
-            <dd>{props.card.user.first_name} {props.card.user.last_name}</dd>
           </dl>
         </Card.Body>
 
-      
+      <Card.Footer>
+        {props.card.user.first_name} {props.card.user.last_name}
+      </Card.Footer>
     </Card>
   )
 }

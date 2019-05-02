@@ -12,8 +12,8 @@ import Dashboard from './containers/Dashboard';
 function App(props) {
   return (
     <Provider store={props.store}>
-      <Navbar bg="light" shadow><h1>Neighborhood Pantry</h1></Navbar>
-      <Container fluid="true">
+      <Navbar bg="light" className="shadow"><h1>Neighborhood Pantry</h1></Navbar>
+      <Container fluid="true" >
         <Row>
           <Col>
             
