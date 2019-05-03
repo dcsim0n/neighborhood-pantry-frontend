@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card,OverlayTrigger,Navbar, Button} from 'react-bootstrap'
+import {Card,Navbar, Button, Dropdown} from 'react-bootstrap'
 import { connect } from 'react-redux';
 import {deleteItem} from '../actions/actions';
 import ItemPopover from './ItemPopover'
@@ -22,11 +22,14 @@ function PantryCard(props) {
           <dl>
             <dt>{props.card.quantity}: {props.card.unit}</dt>
           </dl>
-          <OverlayTrigger trigger="click" placement="top" overlay={
-                <ItemPopover user={props.user} card={props.card} />
-                } >
-                <Button> I want some!</Button>
-              </OverlayTrigger>
+          <Dropdown>
+            <Dropdown.Toggle as={Button}>
+              I want some!
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <ItemPopover card={props.card} />
+            </Dropdown.Menu>
+          </Dropdown>
         </Card.Body>
 
       <Card.Footer>

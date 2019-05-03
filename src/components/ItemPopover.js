@@ -1,9 +1,10 @@
 import React from 'react';
-import {Table, Form, Popover, FormControl, Button} from 'react-bootstrap'
+import {Table, Form, FormControl, Button} from 'react-bootstrap'
 import {fetchAll, postOne} from '../fetch';
 import C from '../constants';
+import {connect} from 'react-redux';
 
-export default class ItemPopover extends React.Component {
+class ItemPopover extends React.Component {
 
     constructor(props){
         super(props)
@@ -47,13 +48,19 @@ export default class ItemPopover extends React.Component {
                 <td>{claim.quantity}</td>
                 <td>{claim.user.first_name}</td>
                 <td>{claim.created_at}</td>
+                <td>{claim.aproved
+                   ? 
+                   <i className="fas fa-check"></i>
+                   :
+                   <i className="fas fa-times"></i>
+                   }
+                </td>
             </tr>
         ))
 
     }
     render(){
         return(
-            <Popover {...this.props} id="popover-basic" title="Would you like some?">
                 <Form onSubmit={this.handleSubmit}>
                     <Table striped bordered hover>
                         <thead>
@@ -61,12 +68,13 @@ export default class ItemPopover extends React.Component {
                             <th># Claimed</th>
                             <th>Who?</th>
                             <th>Date</th>
+                            <th>Approved</th>
                         </tr>
                         </thead>
                         <tbody>
                             {this.generateRows()}
                             <tr>
-                                <td colSpan="2">
+                                <td colSpan="3">
                                     <FormControl onChange={this.handleChange} type="number" placeholder="How much?" />
                                 </td> 
                                 <td>
@@ -76,8 +84,13 @@ export default class ItemPopover extends React.Component {
                         </tbody>
                     </Table>
                 </Form>
-            </Popover>
         )
     }
     
 }
+const mapStateToProps = (state, ownProps) => {
+    return {
+        user: state.user
+    }
+}
+export default connect(mapStateToProps)(ItemPopover)
