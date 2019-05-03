@@ -21,15 +21,10 @@ export default (state = initialState, action) => {
                 email,
                 id
             }
-            // Not a good way to do this, fix it later
-            // localStorage.setItem("token", action.payload.token)
-            // localStorage.setItem("id", id)
 
             return newState
         case C.LOG_OUT:
             console.log("logging out..")
-            localStorage.clear()
-
             return {
                 token: null,
                 firstName: null,
