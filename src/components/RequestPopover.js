@@ -1,9 +1,10 @@
 import React from 'react';
-import {Table, Form, Popover, FormControl, Button} from 'react-bootstrap'
+import {Table, Form, FormControl, Button} from 'react-bootstrap'
 import {fetchAll, postOne} from '../fetch';
 import C from '../constants';
+import {connect} from 'react-redux'
 
-export default class RequestPopover extends React.Component {
+class RequestPopover extends React.Component {
 
     constructor(props){
         super(props)
@@ -46,13 +47,19 @@ export default class RequestPopover extends React.Component {
                 <td>{offer.quantity}</td>
                 <td>{offer.user.first_name}</td>
                 <td>{offer.created_at}</td>
+                <td>{offer.accepted 
+                    ? 
+                    <i className="fas fa-check"></i>
+                    :
+                    <i className="fas fa-times"></i> 
+                    }
+                </td>
             </tr>
         ))
 
     }
     render(){
         return(
-            <Popover {...this.props} id="popover-basic" title="Make an offer">
                 <Form onSubmit={this.handleSubmit}>
                     <Table striped bordered hover>
                         <thead>
@@ -76,8 +83,14 @@ export default class RequestPopover extends React.Component {
                         </tbody>
                     </Table>
                 </Form>
-            </Popover>
         )
     }
     
 }
+const mapStateToProps = (state, ownProps) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(RequestPopover)

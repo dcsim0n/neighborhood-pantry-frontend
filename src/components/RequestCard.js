@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Card,OverlayTrigger, Navbar, Button} from 'react-bootstrap'
-import RequestPopover from './RequestPopover';
+import {Card, Navbar, Button, Dropdown} from 'react-bootstrap'
 import {deleteReq} from '../actions/actions';
+import RequestPopover from './RequestPopover';
 
 function RequestCard(props) {
   
@@ -24,11 +24,17 @@ function RequestCard(props) {
           <dl>
             <dt>{props.card.quantity}: {props.card.unit}</dt>
           </dl>
-          <OverlayTrigger trigger="click" placement="bottom" overlay={
-                <RequestPopover user={props.user} card={props.card} />
-                } >
-                <Button>I have some!</Button>
-              </OverlayTrigger>
+          <Dropdown>
+            <Dropdown.Toggle as={Button}>
+              I have some!
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <RequestPopover 
+                card={props.card} 
+                type="request" />
+            </Dropdown.Menu>
+          </Dropdown>
+
         </Card.Body>
       <Card.Footer>{props.card.user.first_name} {props.card.user.last_name}</Card.Footer>
     </Card>
