@@ -69,8 +69,11 @@ class SignupForm extends Component {
     }
   render() {
     return (
-      <Card>
-        <Card.Body>
+      <div className="d-flex justify-content-center" >
+      
+      
+      <Card className=" user-form">
+        <Card.Body >
           {this.props.errors.length > 0 ? <Alert variant='danger'>{this.props.errors.map(e=><p>{e}</p>)}</Alert> : null }
           <Card.Title>Create a new account</Card.Title>
             <Form>
@@ -122,6 +125,7 @@ class SignupForm extends Component {
             </Form>
         </Card.Body>
       </Card>
+    </div>
     )
   }
 }

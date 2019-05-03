@@ -37,7 +37,8 @@ class LoginForm extends Component {
     }
     render() {
         return (
-            <Card>
+            <div className="d-flex justify-content-center">
+            <Card className="user-form">
                 <Card.Body>
                     {this.props.errors.length>0 ? <Alert variant="danger">{this.props.errors.map(e=><p>{e}</p>)}</Alert> : null}
                     <Card.Title>Sign In</Card.Title>
@@ -56,6 +57,7 @@ class LoginForm extends Component {
                     </Form>
                 </Card.Body>
             </Card>
+            </div>
         )
     }
 }

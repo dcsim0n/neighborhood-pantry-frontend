@@ -7,7 +7,7 @@ import {logOut} from '../actions/actions';
 function LeftNav(props) {
   
   return (
-    <Nav className="flex-column" >
+    <Nav className="flex-column left-nav" >
 
         <Nav.Link href="/">{props.user.token? `Welcome: ${props.user.firstName}` : "Home" }</Nav.Link>
         {props.user.token

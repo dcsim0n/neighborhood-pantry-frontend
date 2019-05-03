@@ -7591,6 +7591,19 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 .item-card {
-  width: 18rem; }
+  width: 18rem;
+  display: inline-block !important; }
+
+.user-form {
+  width: 30rem;
+  margin-top: 3rem; }
+
+.navbar-brand i {
+  padding-left: 1em;
+  padding-right: .5em;
+  color: #28a745; }
+
+.left-nav a {
+  color: #343a40; }
 
 /*# sourceMappingURL=index.css.map */

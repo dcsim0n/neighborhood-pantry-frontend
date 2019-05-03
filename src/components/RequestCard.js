@@ -7,7 +7,7 @@ import {deleteReq} from '../actions/actions';
 function RequestCard(props) {
   
   return (
-    <Card className="w-50 shadow-sm">
+    <Card className="shadow-sm item-card">
         <Card.Header>
           <Navbar>
             <Navbar.Brand>

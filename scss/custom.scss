@@ -1,5 +1,25 @@
+
+$theme-colors : (
+    );
+    
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 .item-card {
+    
     width: 18rem;
+    display: inline-block !important;
+}
+.user-form {
+    width: 30rem;
+    margin-top: 3rem;
+}
+
+.navbar-brand i{
+    padding-left: 1em;
+    padding-right: .5em;
+    color: $green
+}
+
+.left-nav a {
+    color: theme-color("dark")
 }

@@ -5,7 +5,7 @@ import {deleteItem} from '../actions/actions';
 import ItemPopover from './ItemPopover'
 function PantryCard(props) {
   return (
-    <Card className="w-50 shadow-sm">
+    <Card className="item-card shadow-sm">
         <Card.Header>
           <Navbar>
             <Navbar.Brand>

@@ -12,16 +12,17 @@ import Dashboard from './containers/Dashboard';
 function App(props) {
   return (
     <Provider store={props.store}>
-      <Navbar bg="light" className="shadow"><h1>Neighborhood Pantry</h1></Navbar>
+      <Navbar bg="light" className="shadow">
+        <Navbar.Brand>
+          
+          <h1><i className="fas fa-store lg"></i>
+            Neighborhood Pantry
+            </h1>
+        </Navbar.Brand>
+      </Navbar>
       <Container fluid="true" >
         <Row>
-          <Col>
-            
-              
-          </Col>
-        </Row>
-        <Row>
-          <Col> <LeftNav /> </Col>
+          <Col className="border-right"> <LeftNav /> </Col>
           <Col lg="9"> 
             <Switch>
               <Route path="/signup" render={()=><SignupForm/>} />

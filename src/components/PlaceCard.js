@@ -21,7 +21,7 @@ export default class PlaceCard extends React.Component {
   render(){  
     return (
       
-      <Card className="shadow-sm d-inline-block item-card">
+      <Card className="shadow-sm item-card">
           <Card.Body>
               <Card.Title>
                 {this.state.editing
