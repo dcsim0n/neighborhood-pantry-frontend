@@ -2,11 +2,11 @@ import C from '../constants';
 
 const initialState = {
     /* This isn't a good way to do this */
-    token: localStorage.getItem("token"),
+    token: null,
     firstName: null,
     lastName: null ,
     email: null,
-    id: localStorage.getItem("id"),
+    id: null,
     
 }
 
@@ -22,8 +22,8 @@ export default (state = initialState, action) => {
                 id
             }
             // Not a good way to do this, fix it later
-            localStorage.setItem("token", action.payload.token)
-            localStorage.setItem("id", id)
+            // localStorage.setItem("token", action.payload.token)
+            // localStorage.setItem("id", id)
 
             return newState
         case C.LOG_OUT:

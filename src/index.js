@@ -14,15 +14,31 @@ import neighborHoodReducer from './reducers/neighborhoodReducer';
 import pantryReducer from './reducers/pantryReducer'
 import thunk from 'redux-thunk';
 
+const loadState = ()=>{
+  try {
+    const serializedState = localStorage.getItem('neighborhood-pantry')
+    if(serializedState === null){
+      return undefined
+    }
+    return JSON.parse(serializedState)
+  } catch(err){
+    console.log('err', err)
+    return undefined
+  }
+}
+
 const rootReducer = combineReducers({
     user: userReducer,
     errors: errorsReducer,
     neighborhoods: neighborHoodReducer,
     pantry: pantryReducer
   })
-  const composeMidleware = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-  const store = createStore(
+
+const composeMidleware = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const store = createStore(
     rootReducer,
+    loadState(),
     composeMidleware(
       applyMiddleware(thunk)
     ))
@@ -46,3 +62,5 @@ store.subscribe(()=>{
     console.log('err', err)
   }
 })
+
+
