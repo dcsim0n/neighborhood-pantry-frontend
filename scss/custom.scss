@@ -3,11 +3,12 @@ $theme-colors : (
     );
     
 @import "../node_modules/bootstrap/scss/bootstrap";
-
-.item-card {
     
-    width: 18rem;
+$link-color: color("orange");
+.item-card {
+    width: 18rem !important;
     display: inline-block !important;
+    margin-right: 15px;
 }
 .user-form {
     width: 30rem;
@@ -17,9 +18,20 @@ $theme-colors : (
 .navbar-brand i{
     padding-left: 1em;
     padding-right: .5em;
-    color: $green
+    color: $orange
 }
 
-.left-nav a {
-    color: theme-color("dark")
+.dropdown-menu.show {
+    height: 18em;
+    overflow-y: scroll;
 }
+
+.card-row {
+    clear: both;
+    overflow: scroll;
+    height: 16em;
+    white-space: nowrap;
+}
+// .left-nav a {
+//     color: $orange
+// }

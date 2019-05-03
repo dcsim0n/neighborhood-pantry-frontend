@@ -28,7 +28,7 @@ function RequestCard(props) {
             <Dropdown.Toggle as={Button}>
               I have some!
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu className="shadow">
               <RequestPopover 
                 card={props.card} 
                 type="request" />

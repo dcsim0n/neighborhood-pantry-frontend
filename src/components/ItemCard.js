@@ -22,11 +22,11 @@ function PantryCard(props) {
           <dl>
             <dt>{props.card.quantity}: {props.card.unit}</dt>
           </dl>
-          <Dropdown>
+          <Dropdown >
             <Dropdown.Toggle as={Button}>
               I want some!
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu className="shadow">
               <ItemPopover card={props.card} />
             </Dropdown.Menu>
           </Dropdown>

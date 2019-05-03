@@ -41,9 +41,9 @@ class RequestsContainer extends Component {
                 </Navbar.Collapse>
               </Navbar>  
  
-                <CardDeck >
+                <div className="card-row">
                   {this.props.requests.map(card=><RequestCard key={card.id} card={card}/>)}
-                </CardDeck>
+                </div>
             </div>
         )} 
 }

@@ -61,8 +61,8 @@ class ItemPopover extends React.Component {
     }
     render(){
         return(
-                <Form onSubmit={this.handleSubmit}>
-                    <Table striped bordered hover>
+                <Form onSubmit={this.handleSubmit} >
+                    <Table striped bordered hover >
                         <thead>
                         <tr>
                             <th># Claimed</th>

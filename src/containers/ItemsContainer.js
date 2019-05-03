@@ -42,9 +42,9 @@ class ItemsContainer extends Component {
                     </ButtonGroup>
           </Navbar.Collapse>
           </Navbar>
-          <CardDeck >
+          <div className="card-row" >
             {this.props.items.map(card=><ItemCard key={card.id} card={card}/>)}
-          </CardDeck>
+          </div>
       </div>
     )
   }  
