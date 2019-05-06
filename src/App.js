@@ -23,8 +23,8 @@ function App(props) {
       </Navbar>
       <Container fluid="true" >
         <Row>
-          <Col className="border-right"> <LeftNav /> </Col>
-          <Col lg="9.5"> 
+          <Col className="border-right" md="1.5"> <LeftNav /> </Col>
+          <Col md="10"> 
             <Switch>
               <Route path="/signup" render={()=><SignupForm/>} />
               <Route path="/settings" render={()=>(
