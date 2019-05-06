@@ -8,12 +8,12 @@ export default (state = initialState, action) => {
         case C.UPDATE_ITEMS:
             return {
                 items: action.payload,
-                requests: [...state.requests]
+                requests: state.requests
             }
         case C.UPDATE_REQUESTS:
             return {
                 requests: action.payload,
-                items: [...state.items]
+                items: state.items
             }
         default:
             return state

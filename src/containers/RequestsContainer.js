@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {newPR} from '../actions/actions';
-import {ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button, CardDeck, Navbar } from 'react-bootstrap';
+import {ButtonGroup, OverlayTrigger, DropdownButton, Dropdown, Button, Navbar } from 'react-bootstrap';
 import {NewPrPopover} from '../components/popovers';
 
 import RequestCard from '../components/RequestCard';

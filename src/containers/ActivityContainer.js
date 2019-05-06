@@ -22,8 +22,12 @@ class ActivityContainer extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-    return {
-        selectedNH: state.neighborhoods.selected
+    if(state.neighborhoods.selected){
+        return {selectedNH: state.neighborhoods.selected}
+    }else{
+        //If nobody has made a selection, then use the last one
+        const last = state.neighborhoods.all.length - 1
+        return {selectedNH: state.neighborhoods.all[last]}
     }
 }
 

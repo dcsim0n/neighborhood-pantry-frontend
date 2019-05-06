@@ -33,7 +33,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     userId: state.user.id,
     neighborhoods: state.neighborhoods.all,
-    selected: state.neighborhoods.selected
   }
 }
 

@@ -21,6 +21,7 @@ export const getNHInfo =() =>{
         const{id} = getState().neighborhoods.selected
         const {token} = getState().user
         fetchAll(`${C.API_ROOT}/neighborhoods/${id}?token=${token}`,(data)=>{
+            console.log(data)
             dispatch({type: C.UPDATE_ITEMS, payload: data.items})
             dispatch({type: C.UPDATE_REQUESTS, payload: data.requests})
         })
@@ -48,7 +49,13 @@ export const joinNeighborhood = (neighborhood)=>{
             }
         )
     }
-  }
+}
+export const selectActiveNH = (nh)=>{
+    return {
+        type:C.SELECT_NEIGHBORHOOD,
+        payload: nh
+    }
+}
 
   export const newPR = (pantryRequest)=>{
       // Make a new Pantry Request

@@ -7,11 +7,11 @@ import {withRouter} from 'react-router'
 class SignupForm extends Component {
     constructor(props) {
       super(props)
-    
+      
       this.state = {
-         formFirstName:"",
-         formLastName:"",
-         formEmail:"",
+         formFirstName: props.user && props.user.firstName,
+         formLastName: props.user && props.user.lastName,
+         formEmail: props.user && props.user.email,
          formPassword:"",
          formStreet:"",
          formCity:"",

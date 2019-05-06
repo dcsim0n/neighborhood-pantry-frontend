@@ -12,7 +12,10 @@ function LeftNav(props) {
         <Nav.Link href="/">{props.user.token? `Welcome: ${props.user.firstName}` : "Home" }</Nav.Link>
         {props.user.token
           ?
+          <>
+          <Nav.Link href="/settings">Account Settings</Nav.Link>
           <Nav.Link onClick={()=>props.dispatch(logOut())}>Sign Out</Nav.Link>
+          </>
           :
           <Nav.Link href="/signup">Signup </Nav.Link>
 
