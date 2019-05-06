@@ -24,7 +24,7 @@ function App(props) {
       <Container fluid="true" >
         <Row>
           <Col className="border-right"> <LeftNav /> </Col>
-          <Col lg="9"> 
+          <Col lg="9.5"> 
             <Switch>
               <Route path="/signup" render={()=><SignupForm/>} />
               <Route path="/settings" render={()=>(

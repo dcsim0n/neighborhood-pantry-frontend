@@ -7,8 +7,6 @@ import ActivityContainer from './ActivityContainer';
 class Dashboard extends Component {
 
   componentDidMount() {
-    this.props.getNeighborhoods()
-    this.props.getUserInfo()
   }
   render() {
     return (

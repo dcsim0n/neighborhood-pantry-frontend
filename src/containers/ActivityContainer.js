@@ -8,9 +8,9 @@ class ActivityContainer extends Component {
 
     componentDidMount(){
         //Fetch items and requests here?
+        this.props.dispatch(getNHInfo())
     }
     render() {
-        this.props.dispatch(getNHInfo())
         return (
             <div className="shadow">
                 <h2>Your Neighborhood: {this.props.selectedNH.name}</h2>

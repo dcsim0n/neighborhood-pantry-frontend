@@ -14,16 +14,18 @@ function UserNeighborhoods(props) {
         props.selectNH(newSelection)
     }
     return (
-        <div className="user-form">
-            <Form.Group controlId="neighborhood-select">
-                <Form.Label>Neighborhoods you've joined</Form.Label>
-                <Form.Control as="select" onChange={selectNH}>
-                    {props.neighborhoods.all.map((nh)=>(
-                        <option value={nh.id}>{nh.name}</option>
-                    ))}
-                </Form.Control>
-                
-            </Form.Group>
+        <div className="d-flex justify-content-center" >
+            <div className="user-form">
+                <Form.Group controlId="neighborhood-select">
+                    <Form.Label>Neighborhoods you've joined</Form.Label>
+                    <Form.Control as="select" onChange={selectNH}>
+                        {props.neighborhoods.all.map((nh)=>(
+                            <option value={nh.id}>{nh.name}</option>
+                        ))}
+                    </Form.Control>
+                    
+                </Form.Group>
+            </div>
         </div>
     )
 }

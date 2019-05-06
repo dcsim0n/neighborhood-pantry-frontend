@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import C from '../constants'
 import {connect} from 'react-redux'
 
-import {Card, Container, Col, Form, Button, FormControl} from 'react-bootstrap'
+import {Card, Container, Col, Form, Button, FormControl, InputGroup} from 'react-bootstrap'
 import {fetchAll, postOne} from '../fetch';
 import { joinNeighborhood } from '../actions/actions';
 
@@ -33,7 +33,7 @@ class NeighborhoodSearch extends Component {
     })
     e.target.reset()
   }
-  getNearbyNeighborhoods(){
+  getNearbyNeighborhoods= ()=>{
     const id = this.props.userId
     fetchAll(`${C.API_ROOT}/neighborhoods/search?user_id=${id}&radius=${this.state.searchRadius}`,(data)=>{
       this.setState({nearby: data})
@@ -66,11 +66,17 @@ class NeighborhoodSearch extends Component {
           <Card.Body>
               <h3>Find your Neighborhood</h3>
               <label htmlFor="search-radius">Adjust the search radius</label>
-              
-                <FormControl style={{width:"8em"}}
+              <InputGroup style={{width:"8em"}}>
+                <FormControl 
                   id="search-radius" type="number" 
                   value={this.state.searchRadius} 
-                  onChange={(e)=>this.setState({searchRadius: e.target.value})}/>
+                  onChange={(e)=>this.setState(
+                    {searchRadius: e.target.value}
+                  )}/>
+                  <InputGroup.Append>
+                    <Button onClick={this.getNearbyNeighborhoods}>Find</Button>
+                  </InputGroup.Append>
+              </InputGroup>
           
               <Card.Title>Neighborhoods in your area:</Card.Title>
               
