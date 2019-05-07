@@ -8,6 +8,30 @@ class UserPantry extends Component {
         this.props.getUserItems()
         this.props.getUserRequests()
     }
+    renderItems(){
+        return this.props.items.map((item)=>{
+            
+            return (
+                <tr>
+                    <td>{item.quantity}</td>
+                    <td>{item.name}</td>
+                    <td>{item.created_at}</td>
+                </tr>
+            )
+        })
+    }
+    renderRequests(){
+        return this.props.requests.map((request)=>{
+            console.log('request', request)
+            return (
+                <tr>
+                    <td>{request.quantity}</td>
+                    <td>{request.name}</td>
+                    <td>{request.created_at}</td>
+                </tr>
+            )
+        })
+    }
     render(){
         return (
             <div>
@@ -15,11 +39,12 @@ class UserPantry extends Component {
                 <Table striped brodered>
                     <thead>
                         <th>Quantity</th>
-                        <th>From:</th>
+                        <th>Description:</th>
                         <th>Date</th>
                     </thead>
                     <tbody>
-                        
+                        {this.renderItems()}
+                        {this.renderRequests()}
                     </tbody>
                 </Table>
             </div>
