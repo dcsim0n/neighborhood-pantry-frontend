@@ -13,6 +13,7 @@ function LeftNav(props) {
         {props.user.token
           ?
           <>
+          <Nav.Link href="/pantry">My Pantry</Nav.Link>
           <Nav.Link href="/settings">Account Settings</Nav.Link>
           <Nav.Link onClick={()=>props.dispatch(logOut())}>Sign Out</Nav.Link>
           </>

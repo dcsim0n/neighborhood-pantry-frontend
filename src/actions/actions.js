@@ -111,6 +111,28 @@ export const selectActiveNH = (nh)=>{
         })
     }
   }
+  export const getUserItems = ()=>{
+      return(dispatch,getState)=>{
+          const {id, token} = getState().user
+          fetchAll(`${C.API_ROOT}/users/${id}/pantry_items?token=${token}`,(data)=>{
+              dispatch({
+                  type:C.UPDATE_ITEMS,
+                  payload: data
+              })
+          })
+      }
+  }
+  export const getUserRequests = ()=>{
+      return(dispatch,getState)=>{
+          const {id, token} = getState().user
+          fetchAll(`${C.API_ROOT}/users/${id}/pantry_requests?token=${token}`,(data)=>{
+              dispatch({
+                  type:C.UPDATE_REQUESTS,
+                  payload: data
+              })
+          })
+      }
+  }
   export const logOut = ()=>{
       return {type:C.LOG_OUT}
   }

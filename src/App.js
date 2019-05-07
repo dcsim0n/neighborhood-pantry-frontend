@@ -8,6 +8,7 @@ import LeftNav from './components/LeftNav';
 import LoginForm from './components/LoginForm';
 import Dashboard from './containers/Dashboard';
 import UserSettings from './containers/UserSettings';
+import UserPantry from './containers/UserPantry'
 
 
 function App(props) {
@@ -27,6 +28,9 @@ function App(props) {
           <Col md="10"> 
             <Switch>
               <Route path="/signup" render={()=><SignupForm/>} />
+              <Route path="/pantry" render={()=>(
+                <UserPantry />
+              )} />
               <Route path="/settings" render={()=>(
                 props.user.token
                 ?

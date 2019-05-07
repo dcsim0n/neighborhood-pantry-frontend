@@ -23,7 +23,7 @@ class Dashboard extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getNeighborhoods: () => dispatch(getNeighborhoods()),
-    getUserInfo: () =>dispatch(getUserInfo())
+    getUserInfo: () => dispatch(getUserInfo())
   }
   
 }
