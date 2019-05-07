@@ -39,6 +39,7 @@ class UserFormFields extends Component {
     }
 
   render() {
+    const {formFirstName, formLastName, formEmail, formCity, formState, formStreet, formZip } = this.state
     return (
       
       <Card className="user-form">
@@ -52,13 +53,15 @@ class UserFormFields extends Component {
                   <Form.Control 
                     onChange={this.handleChange} 
                     type="text"
+                    defaultValue={formFirstName}
                     required />
                   <Form.Control.Feedback type="invalid">Enter your first name</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} controlId="formLastName">
                   <Form.Label >Last Name</Form.Label>
                   <Form.Control 
-                    onChange={this.handleChange} 
+                    onChange={this.handleChange}
+                    defaultValue={formLastName} 
                     type="text" 
                     required />
                   <Form.Control.Feedback type="invalid">Enter your last name</Form.Control.Feedback>
@@ -68,6 +71,7 @@ class UserFormFields extends Component {
                   <Form.Label>Email:</Form.Label>
                   <Form.Control 
                     onChange={this.handleChange} 
+                    defaultValue={formEmail}
                     type="email" 
                     required/>
                   <Form.Control.Feedback type="invalid">Enter your email address</Form.Control.Feedback>
@@ -75,7 +79,7 @@ class UserFormFields extends Component {
                 <Form.Group controlId="formPassword">
                   <Form.Label>Password</Form.Label>
                   <Form.Control 
-                    onChange={this.handleChange} 
+                    onChange={this.handleChange}
                     type="password" 
                     required/>
                   <Form.Control.Feedback type="invalid">Enter a password</Form.Control.Feedback>
@@ -93,6 +97,7 @@ class UserFormFields extends Component {
                 <Form.Label>Street Address</Form.Label>
                 <Form.Control 
                   onChange={this.handleChange} 
+                  defaultValue={formStreet}
                   type="text" 
                   required/>
                 <Form.Control.Feedback type="invalid">Please enter your street address</Form.Control.Feedback>
@@ -102,6 +107,7 @@ class UserFormFields extends Component {
                 <Form.Label>City</Form.Label>
                 <Form.Control 
                   onChange={this.handleChange} 
+                  defaultValue={formCity}
                   type="text" 
                   required/>
                 <Form.Control.Feedback type="invalid">Enter your city</Form.Control.Feedback>
@@ -110,6 +116,7 @@ class UserFormFields extends Component {
                 <Form.Label>State</Form.Label>
                 <Form.Control 
                   onChange={this.handleChange} 
+                  defaultValue={formState}
                   type="text" 
                   required/>
                 <Form.Control.Feedback type="invalid">Enter your two letter state</Form.Control.Feedback>
@@ -119,6 +126,7 @@ class UserFormFields extends Component {
                 <Form.Label>Zip</Form.Label>
                 <Form.Control 
                   onChange={this.handleChange} 
+                  defaultValue={formZip}
                   type="text" 
                   required/>
                 <Form.Control.Feedback type="invalid">Enter your city</Form.Control.Feedback>
