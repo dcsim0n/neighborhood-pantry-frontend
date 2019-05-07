@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import C from '../constants';
 import {withRouter} from 'react-router'
+import {connect} from 'react-redux'
 import UserFormFields from './UserFormFields'
 
 class SignupForm extends Component {
@@ -56,4 +57,5 @@ class SignupForm extends Component {
     )
   }
 }
-export default withRouter(SignupForm)
+
+export default withRouter(connect(null)(SignupForm))

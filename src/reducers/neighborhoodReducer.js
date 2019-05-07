@@ -16,9 +16,16 @@ export default (state = initialState, action) => {
                 all: state.all
             }
         case C.LOG_IN:
+            const {neighborhoods} = action.payload.user
+            let selected
+            if(neighborhoods.length > 0){
+                selected = neighborhoods[neighborhoods.length-1]
+            }else{
+                selected = null
+            }
             return {
-                all: action.payload.user.neighborhoods,
-                selected: action.payload.user.neighborhoods[0]
+                all: neighborhoods,
+                selected: selected
             }
         case C.LOG_OUT:
             return initialState

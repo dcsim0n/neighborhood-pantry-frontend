@@ -43,6 +43,7 @@ export const joinNeighborhood = (neighborhood)=>{
             token: token,
             neighborhood_id: neighborhood.id
         }
+        dispatch({type:C.SELECT_NEIGHBORHOOD,payload:neighborhood})
         postOne(`${C.API_ROOT}/users/${id}/neighbors`,body,(data)=>{
                 console.log('data :', data);
                 dispatch({type:C.SET_USER_NEIGHBORHOODS,payload:data})
