@@ -7604,7 +7604,7 @@ a.text-dark:hover, a.text-dark:focus {
   padding-right: .5em;
   color: #fd7e14; }
 
-.dropdown-menu.show {
+.item-card .dropdown-menu.show {
   height: 18em;
   overflow-y: scroll; }
 

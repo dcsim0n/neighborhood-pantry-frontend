@@ -7,6 +7,11 @@ import {NewPrPopover} from '../components/popovers';
 import RequestCard from '../components/RequestCard';
 
 class RequestsContainer extends Component {
+
+    state ={
+      sortBy: 'newest'
+    }
+    
     handlePrForm = (event) => {
         event.preventDefault()
         console.log('event.target.name', event.target.name.value)
@@ -19,6 +24,35 @@ class RequestsContainer extends Component {
         }
         console.log('pantryRequest :', pantryRequest);
         this.props.dispatch(newPR(pantryRequest))
+        event.target.reset()
+    }
+
+    sortCards (){
+      switch (this.state.sortBy) {
+        case "oldest":
+          return this.props.requests.sort((card1,card2)=>{
+            if(card1.created_at < card2.created_at){
+              return -1
+            }
+            if(card1.created_at > card2.created_at){
+              return 1
+            }
+            return 0
+          })
+          
+        case "newest":
+          return this.props.requests.sort((card1,card2)=>{
+            if(card1.created_at < card2.created_at){
+              return 1
+            }
+            if(card1.created_at > card2.created_at){
+              return -1
+            }
+            return 0
+          })
+        default:
+          return this.props.requests
+      }
     }
     render() {
         return (
@@ -33,8 +67,8 @@ class RequestsContainer extends Component {
                               <Button variant="secondary">Request Food</Button>
                             </OverlayTrigger>
                             <DropdownButton as={ButtonGroup} variant="secondary" title="Sort">
-                              <Dropdown.Item  eventKey="1">Newest First</Dropdown.Item>
-                              <Dropdown.Item eventKey="1">Oldest First</Dropdown.Item>
+                              <Dropdown.Item onClick={()=>this.setState({sortBy:'newest'})} eventKey="1">Newest First</Dropdown.Item>
+                              <Dropdown.Item onClick={()=>this.setState({sortBy:'oldest'})} eventKey="1">Oldest First</Dropdown.Item>
                             </DropdownButton>
                             <Button variant="secondary">Show More</Button>
                           </ButtonGroup>
@@ -42,7 +76,7 @@ class RequestsContainer extends Component {
               </Navbar>  
  
                 <div className="card-row">
-                  {this.props.requests.map(card=><RequestCard key={card.id} card={card}/>)}
+                  {this.sortCards().map(card=><RequestCard key={card.id} card={card}/>)}
                 </div>
             </div>
         )} 
