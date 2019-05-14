@@ -34,7 +34,7 @@ export default class PlaceCard extends React.Component {
                 :
                   this.state.name
                 }
-                <i class="fas fa-edit" onClick={()=>this.setEditing()}></i> 
+                <i className="fas fa-edit" onClick={()=>this.setEditing()}></i> 
               </Card.Title>
               <Button onClick={(e)=>this.props.handleClick(this.state)}>Create</Button>
           </Card.Body>
